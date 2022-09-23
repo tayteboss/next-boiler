@@ -17,18 +17,19 @@ const Page = ({ pageTransitionVariants, data }) => (
 	</PageWrapper>
 );
 
-export const getStaticPaths = async () => {
-	const allPages = await getAllPages();
+// export const getStaticPaths = async () => {
+// 	const allPages = await getAllPages();
 
-	return {
-		paths: allPages.allPages?.map((page) => `/${page.pageSlug}`) || [],
-		fallback: false,
-	};
-};
+// 	return {
+// 		paths: allPages.allPages?.map((page) => `/${page.pageSlug}`) || [],
+// 		fallback: false,
+// 	};
+// };
 
 export const getStaticProps = async ({ params, preview = false }) => {
-	let data = await getPage(params.slug, preview);
-	data = data.page;
+	// const data = await getPage(params.slug, preview);
+	const data = false;
+
 
 	return {
 		props: {
