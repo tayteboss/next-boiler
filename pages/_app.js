@@ -6,10 +6,6 @@ import { useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import { theme } from '../styles/theme';
 import { GlobalStyles } from '../styles/global';
-import * as ga from '../lib/tracking/google-analytics';
-import * as fb from '../lib/tracking/facebook-pixel';
-import GoogleAnalytics from '../components/common/Tracking/GoogleAnalytics';
-import { FacebookPixel } from '../components/common/Tracking/FacebookPixel';
 
 function App({ Component, pageProps }) {
 	const router = useRouter();
@@ -21,15 +17,9 @@ function App({ Component, pageProps }) {
 	// Setup google tracking
 	const routerEvents = router.events;
 	useEffect(() => {
-		const handleRouteChange = (url) => {
-			ga.pageview(url);
-			fb.pageview();
-		};
-
-		// Assign the event on change
+		const handleRouteChange = (url) => {};
 		routerEvents.on('routeChangeComplete', handleRouteChange);
 
-		// When destroyed, destroy the event
 		return () => {
 			routerEvents.off('routeChangeComplete', handleRouteChange);
 		};
@@ -38,8 +28,6 @@ function App({ Component, pageProps }) {
 	return (
 		<>
 			<GlobalStyles />
-			<GoogleAnalytics />
-			<FacebookPixel />
 			<ThemeProvider theme={theme}>
 				<Layout>
 					<AnimatePresence
