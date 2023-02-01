@@ -1,6 +1,5 @@
 let robotsPolicy = [{ userAgent: '*', allow: '/' }];
-if( process.env.ENVIRONMENT !== 'production' )
-{
+if (process.env.ENVIRONMENT !== 'production') {
 	robotsPolicy = [{ userAgent: '*', disallow: '/' }];
 }
 
@@ -10,4 +9,4 @@ module.exports = {
 	robotsTxtOptions: {
 		policies: robotsPolicy,
 	},
-}
+};
