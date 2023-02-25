@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import useWindowDimensions from './useWindowDimensions';
 
-const checkQuery = (query) => window.matchMedia(query).matches;
+const checkQuery = (query: string) => window.matchMedia(query).matches;
 
-const useMediaQuery = (query) => {
-	const [isMatching, setIsMatching] = useState(false);
+const useMediaQuery = (query: string): boolean => {
+	const [isMatching, setIsMatching] = useState<boolean>(false);
 	const { width, height } = useWindowDimensions();
 
 	useEffect(() => {
-		const newMatchingState = checkQuery(query);
+		const newMatchingState: boolean = checkQuery(query);
 		if (isMatching !== newMatchingState) {
 			setIsMatching(newMatchingState);
 		}

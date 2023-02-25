@@ -1,5 +1,7 @@
-const useNoScroll = (addNoScroll) => {
-	const html = document.querySelector('html');
+const useNoScroll = (addNoScroll: boolean) => {
+	const html: HTMLElement | null = document.querySelector('html');
+
+	if (!html) return;
 
 	if (addNoScroll) {
 		html.classList.add('no-scroll');

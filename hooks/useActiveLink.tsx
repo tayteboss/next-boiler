@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-const useActiveLink = () => {
-	const [activeLink, setActiveLink] = useState('Home');
+const useActiveLink = (): string => {
+	const [activeLink, setActiveLink] = useState<string>('Home');
 	const router = useRouter();
 
 	useEffect(() => {
@@ -17,7 +17,7 @@ const useActiveLink = () => {
 		} else if (router.pathname === '/contact') {
 			setActiveLink('Contact');
 		} else {
-			setActiveLink(false);
+			setActiveLink('');
 		}
 	}, [router]);
 

@@ -1,10 +1,20 @@
 import { useEffect, useState } from 'react';
 import throttle from 'lodash.throttle';
 
-export const useMousePosition = () => {
-	const [position, setPosition] = useState({ x: 0, y: 0 });
+type ReturnMousePosition = {
+	x: number;
+	y: number;
+};
 
-	const setFromEvent = (e) => setPosition({ x: e.clientX, y: e.clientY });
+type PositionState = {
+	x: number;
+	y: number;
+};
+
+export const useMousePosition = (): ReturnMousePosition => {
+	const [position, setPosition] = useState<PositionState>({ x: 0, y: 0 });
+
+	const setFromEvent = (e: MouseEvent) => setPosition({ x: e.clientX, y: e.clientY });
 
 	useEffect(() => {
 		const throttledSetFromEvent = throttle(setFromEvent, 50);

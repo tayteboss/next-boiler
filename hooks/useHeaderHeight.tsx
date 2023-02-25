@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 
 const useHeaderHeight = () => {
 	useEffect(() => {
-		const setHeaderHeight = () => {
-			const header = document.querySelector('.header');
+		const setHeaderHeight = (): void => {
+			const header: HTMLElement | null = document.querySelector('.header');
 
 			if (!header) return;
 			const headerHeight = header.offsetHeight;

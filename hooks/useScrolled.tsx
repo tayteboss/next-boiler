@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
 import throttle from 'lodash.throttle';
 
-const useScrolled = (amount = 100) => {
-	const [hasScrolled, setHasScrolled] = useState(false);
+type Props = {
+	amount: number;
+};
 
-	const handleScroll = () => {
+const useScrolled = (props: Props) => {
+	const {
+		amount = 100
+	} = props;
+
+	const [hasScrolled, setHasScrolled] = useState<boolean>(false);
+
+	const handleScroll = (): void => {
 		if (window.scrollY > amount) {
 			setHasScrolled(true);
 		} else {

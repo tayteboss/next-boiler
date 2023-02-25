@@ -1,30 +1,22 @@
 import { useState, useEffect } from 'react';
 import throttle from 'lodash.throttle';
 
-/**
- * Get Window Dimensions
- * @returns Object
- *
- * USE:
- * const { height } = useWindowDimensions();
- * const [unit, setUnit] = useState(height / width * 0.01)
- *
- * useEffect(() => {
- * 	setUnit(height * 0.01);
- * }, [height]);
- */
+type WindowDimensions = {
+	width: number;
+	height: number;
+};
 
-function getWindowDimensions() {
+const getWindowDimensions = (): WindowDimensions => {
 	const { innerWidth: width, innerHeight: height } = window;
 
 	return {
 		width,
 		height,
 	};
-}
+};
 
-export default function useWindowDimensions() {
-	const [windowDimensions, setWindowDimensions] = useState({
+const useWindowDimensions = (): WindowDimensions => {
+	const [windowDimensions, setWindowDimensions] = useState<WindowDimensions>({
 		width: 0,
 		height: 0,
 	});
@@ -32,7 +24,7 @@ export default function useWindowDimensions() {
 	useEffect(() => {
 		setWindowDimensions(getWindowDimensions());
 
-		function handleResize() {
+		const handleResize = (): void => {
 			setWindowDimensions(getWindowDimensions());
 		}
 
@@ -47,4 +39,6 @@ export default function useWindowDimensions() {
 	}, []);
 
 	return windowDimensions;
-}
+};
+
+export default useWindowDimensions;

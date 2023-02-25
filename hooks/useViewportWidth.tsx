@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-const useViewportWidth = () => {
-	const [breakpoint, setBreakpoint] = useState(false);
+const useViewportWidth = (): string => {
+	const [breakpoint, setBreakpoint] = useState<string>('');
 
-	const handleResize = () => {
-		const width = window.innerWidth;
+	const handleResize = (): void => {
+		const width: number = window.innerWidth;
 
 		if (width < 550) {
 			setBreakpoint('mobile');
