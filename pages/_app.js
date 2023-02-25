@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { useRouter } from 'next/router';
 import { AnimatePresence } from 'framer-motion';
 import Cookies from 'js-cookie';
-import Layout from '../components/layout/Layout';
+import Layout from '../components/layout';
 import { theme } from '../styles/theme';
 import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
@@ -31,8 +31,14 @@ function App({ Component, pageProps }) {
 
 		if (hasCookies) {
 			setHasVisited(true);
-		} else {
-			setHasVisited(true);
+		}
+
+		const timer = setTimeout(() => {
+			Cookies.set('visited', 'true', { expires: 1, path: '' });
+		}, 5000);
+
+		return () => {
+			clearTimeout(timer);
 		}
 	}, []);
 

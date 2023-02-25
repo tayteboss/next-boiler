@@ -4,7 +4,7 @@ const HeaderWrapper = styled.header``;
 
 const Header = () => {
 	return (
-		<HeaderWrapper>
+		<HeaderWrapper className="header">
 			Header
 		</HeaderWrapper>
 	)
