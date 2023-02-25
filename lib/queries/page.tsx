@@ -1,4 +1,4 @@
-const PAGE_QUERY = `
+const PAGE_QUERY: string = `
 	query Query($pageSlug: String) {
 		page(filter: {pageSlug: {eq: $pageSlug}}) {
 			pageSlug

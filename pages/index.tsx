@@ -5,14 +5,24 @@ import { getPage } from '../lib/datocms';
 
 const PageWrapper = styled.div``;
 
-const Page = ({ data }) => (
+type Props = {
+	data: {}
+};
+
+const Page = (props: Props) => {
+	const {
+		data
+	} = props;
+
+	return (
 	<PageWrapper>
 		{/* <Head>{renderMetaTags(data.seo)}</Head> */}
 		Home
 	</PageWrapper>
-);
+	);
+};
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
 	// const data = await getPage('home');
 	const data = false;
 

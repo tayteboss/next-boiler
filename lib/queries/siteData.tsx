@@ -1,4 +1,4 @@
-const SITE_DATA_QUERY = `
+const SITE_DATA_QUERY: string = `
 	query Query($pageSlug: String) {
 		page(filter: {pageSlug: {eq: $pageSlug}}) {
 			

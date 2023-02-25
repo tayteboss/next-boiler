@@ -3,7 +3,13 @@ import ALL_PAGES_QUERY from './queries/allPages';
 import PAGE_QUERY from './queries/page';
 import SITE_QUERY from './queries/siteData';
 
-const request = ({ query, variables, preview }) => {
+type Request = {
+	query: string;
+	variables: {};
+	preview: boolean;
+};
+
+const request = ({ query, variables, preview }: Request) => {
 	const endpoint = preview
 		? `https://graphql.datocms.com/preview`
 		: `https://graphql.datocms.com/`;
@@ -19,21 +25,23 @@ export const getSiteData = async () => {
 	const data = await request({
 		query: SITE_QUERY,
 		variables: { siteId: process.env.SITE_ID },
+		preview: false
 	});
 
 	return data;
 };
 
-export const getAllPages = async (siteId) => {
+export const getAllPages = async (siteId: number) => {
 	const data = await request({
 		query: ALL_PAGES_QUERY,
 		variables: { siteId },
+		preview: false
 	});
 
 	return data;
 };
 
-export const getPage = async (pageSlug, preview) => {
+export const getPage = async (pageSlug: string, preview: boolean) => {
 	const data = await request({
 		query: PAGE_QUERY,
 		variables: { pageSlug },

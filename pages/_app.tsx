@@ -9,18 +9,44 @@ import { theme } from '../styles/theme';
 import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
 
-const pageTransitionVariants = {
+type Transitions = {
+	hidden: {
+		opacity: number;
+		transition: {
+			duration: number;
+		}
+	}
+	visible: {
+		opacity: number;
+		transition: {
+			duration: number;
+			delay: number
+		}
+	}
+};
+
+const pageTransitionVariants: Transitions = {
 	hidden: { opacity: 0, transition: { duration: 0.3 } },
 	visible: { opacity: 1, transition: { duration: 0.3, delay: 0.25 } },
 };
 
-function App({ Component, pageProps }) {
-	const [hasVisited, setHasVisited] = useState(false);
+type Props = {
+	Component: any; // TO BE UPDATED
+	pageProps: {};
+};
 
-	const router = useRouter();
+const App = (props: Props) => {
+	const {
+		Component,
+		pageProps
+	} = props;
+
+	const [hasVisited, setHasVisited] = useState<boolean>(false);
+
+	const router= useRouter();
 	const routerEvents = router.events;
 
-	const handleExitComplete = () => {
+	const handleExitComplete = (): void => {
 		window.scrollTo(0, 0);
 	};
 

@@ -1,5 +1,5 @@
 // eslint-disable-next-line jsdoc/check-indentation
-export const responsiveImageFragment = `
+export const responsiveImageFragment: string = `
 	... on ResponsiveImage {
 		srcSet
 		webpSrcSet

@@ -1,4 +1,4 @@
-const ALL_PAGES_QUERY = `query Query {
+const ALL_PAGES_QUERY: string = `query Query {
 	allPages {
 		pageSLug
 	}
