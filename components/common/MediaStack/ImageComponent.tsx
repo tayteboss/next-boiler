@@ -4,13 +4,27 @@ import styled from 'styled-components';
 const ImageComponentWrapper = styled.div`
 	position: relative;
 	padding-top: 56.25%;
-	background-color: var(--colour-system-white-grey-700);
+	background-color: gray;
 `;
 
-const ImageComponent = ({ data }) => (
+type Props = {
+	data: {
+		url: string
+	};
+	isPriority: boolean;
+};
+
+const ImageComponent = (props: Props) => {
+	const {
+		data,
+		isPriority
+	} = props;
+
+	return (
 	<ImageComponentWrapper className="image-component-wrapper">
-		<Image src={data.url} layout="fill" objectFit="cover" />
+		<Image src={data.url} layout="fill" objectFit="cover" priority={isPriority} />
 	</ImageComponentWrapper>
-);
+	);
+};
 
 export default ImageComponent;

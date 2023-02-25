@@ -1,6 +1,12 @@
+import { ReactNode } from 'react';
 import useMediaQuery from '../../../hooks/useMediaQuery';
 
-export function MediaQueryContainer(props) {
+type Props = {
+	children: ReactNode;
+	query: string;
+};
+
+export function MediaQueryContainer(props: Props) {
 	const { children, query } = props;
 
 	const showChildren = useMediaQuery(query);

@@ -34,7 +34,7 @@ const Loader = styled(motion.div)`
 	border-radius: 100%;
 `;
 
-const wrapperVariants = {
+const wrapperVariants: {} = {
 	hidden: {
 		opacity: 0,
 		transition: {
@@ -51,7 +51,7 @@ const wrapperVariants = {
 	},
 };
 
-const childVariants = {
+const childVariants: {} = {
 	hidden: {
 		opacity: 0,
 		transition: {
@@ -70,15 +70,27 @@ const childVariants = {
 	},
 };
 
-const VideoComponent = ({ data, inView }) => {
-	const [isLoading, setIsLoading] = useState(true);
-	let videoUrl = false;
+type Props = {
+	data: {
+		url: string
+	};
+	inView: boolean;
+};
 
+const VideoComponent = (props: Props) => {
+	const {
+		data,
+		inView
+	} = props;
+
+	const [isLoading, setIsLoading] = useState(true);
+
+	let videoUrl: boolean | string = false;
 	if (data) {
 		videoUrl = data?.url;
 	}
 
-	const videoRef = useRef();
+	const videoRef = useRef<HTMLVideoElement>(null);
 
 	return (
 		<VideoComponentWrapper className="video-component-wrapper">
@@ -109,7 +121,6 @@ const VideoComponent = ({ data, inView }) => {
 						ref={videoRef}
 						preload="auto"
 						onLoadedData={() => setIsLoading(false)}
-						key={inView}
 					>
 						<source src={videoUrl} type="video/mp4" />
 					</Video>

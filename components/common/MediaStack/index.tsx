@@ -7,14 +7,27 @@ const MediaStackWrapper = styled.div`
 	overflow: hidden;
 `;
 
-const Caption = styled.h3`
-	margin-top: 16px;
-`;
+type Props = {
+	data: {
+		useVideo: boolean,
+		video: {
+			url: string
+		},
+		image: {
+			url: string
+		},
+	};
+	isPriority?: boolean
+};
 
-const MediaStack = ({ data }) => {
+const MediaStack = (props: Props) => {
+	const {
+		data,
+		isPriority = false
+	} = props;
+
 	const useVideo = data?.useVideo && data?.video?.url;
-	const useImage = !data?.useVideo && data?.image;
-	const useCaption = data?.caption;
+	const useImage = !data?.useVideo && data?.image?.url;
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -25,8 +38,7 @@ const MediaStack = ({ data }) => {
 	return (
 		<MediaStackWrapper ref={ref}>
 			{useVideo && <VideoComponent data={data.video} inView={inView} />}
-			{useImage && <ImageComponent data={data.image} />}
-			{useCaption && <Caption>{data.caption}</Caption>}
+			{useImage && <ImageComponent data={data.image} isPriority={false} />}
 		</MediaStackWrapper>
 	);
 };

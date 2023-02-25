@@ -5,7 +5,20 @@ import { isLink, isParagraph } from 'datocms-structured-text-utils';
 
 const Content = styled.div``;
 
-const RichText = ({ className, data, color }) => (
+type Props = {
+	className: string;
+	data: any;
+	color: string;
+};
+
+const RichText = (props: Props) => {
+	const {
+		className,
+		data,
+		color
+	} = props;
+
+	return (
 	<Content className={`${className} content content--${color}`}>
 		<StructuredText
 			data={data}
@@ -21,6 +34,7 @@ const RichText = ({ className, data, color }) => (
 			]}
 		/>
 	</Content>
-);
+	);
+};
 
 export default RichText;

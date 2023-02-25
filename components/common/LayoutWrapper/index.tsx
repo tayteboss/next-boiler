@@ -1,4 +1,9 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
+
+type Props = {
+	children: ReactNode;
+};
 
 const Wrapper = styled.div`
 	margin: 0 auto;
@@ -7,7 +12,7 @@ const Wrapper = styled.div`
 	padding-right: 16px;
 `;
 
-const LayoutWrapper = (props) => (
+const LayoutWrapper = (props: Props) => (
 	<Wrapper className="inner-wrapper">{props.children}</Wrapper>
 );
 

@@ -1,4 +1,9 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
+
+type Props = {
+	children: ReactNode;
+};
 
 const Grid = styled.div`
 	display: grid;
@@ -11,6 +16,6 @@ const Grid = styled.div`
 	}
 `;
 
-const LayoutGrid = (props) => <Grid className="grid">{props.children}</Grid>;
+const LayoutGrid = (props: Props) => <Grid className="grid">{props.children}</Grid>;
 
 export default LayoutGrid;
