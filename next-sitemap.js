@@ -1,5 +1,5 @@
 let robotsPolicy = [{ userAgent: '*', allow: '/' }];
-if (process.env.ENVIRONMENT !== 'production') {
+if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'staging') {
 	robotsPolicy = [{ userAgent: '*', disallow: '/' }];
 }
 

@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { renderMetaTags } from 'react-datocms';
 import styled from 'styled-components';
 import { getPage } from '../lib/datocms';
+import { NextSeo } from 'next-seo';
 
 const PageWrapper = styled.div``;
 
@@ -16,7 +17,19 @@ const Page = (props: Props) => {
 
 	return (
 	<PageWrapper>
-		{/* <Head>{renderMetaTags(data.seo)}</Head> */}
+		<NextSeo
+			title="Boiler"
+			description="Boiler Plate"
+			// openGraph={{
+			// 	images: [
+			// 		{
+			// 			url: siteData?.seoImage?.url,
+			// 			width: 1200,
+			// 			height: 630,
+			// 		},
+			// 	],
+			// }}
+		/>
 		Home
 	</PageWrapper>
 	);

@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo';
 import styled from 'styled-components';
 
 const PageWrapper = styled.div``;
@@ -5,7 +6,19 @@ const PageWrapper = styled.div``;
 const Page = () => {
 	return (
 		<PageWrapper>
-			404
+			<NextSeo
+				title="Boiler"
+				description="Boiler Plate"
+				// openGraph={{
+				// 	images: [
+				// 		{
+				// 			url: siteData?.seoImage?.url,
+				// 			width: 1200,
+				// 			height: 630,
+				// 		},
+				// 	],
+				// }}
+			/>
 		</PageWrapper>
 	)
 }
