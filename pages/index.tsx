@@ -24,8 +24,8 @@ const Page = (props: Props) => {
 			// 	images: [
 			// 		{
 			// 			url: siteData?.seoImage?.url,
-			// 			width: 1200,
-			// 			height: 630,
+			// 			width: 800,
+			// 			height: 600,
 			// 		},
 			// 	],
 			// }}

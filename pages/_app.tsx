@@ -8,22 +8,7 @@ import Layout from '../components/layout';
 import { theme } from '../styles/theme';
 import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
-
-type Transitions = {
-	hidden: {
-		opacity: number;
-		transition: {
-			duration: number;
-		}
-	}
-	visible: {
-		opacity: number;
-		transition: {
-			duration: number;
-			delay: number
-		}
-	}
-};
+import { Transitions } from '../shared/types/types';
 
 const pageTransitionVariants: Transitions = {
 	hidden: { opacity: 0, transition: { duration: 0.3 } },

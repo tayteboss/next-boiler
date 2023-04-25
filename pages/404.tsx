@@ -13,7 +13,7 @@ const Page = () => {
 				// 	images: [
 				// 		{
 				// 			url: siteData?.seoImage?.url,
-				// 			width: 1200,
+				// 			width: 800,
 				// 			height: 630,
 				// 		},
 				// 	],

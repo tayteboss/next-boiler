@@ -1,13 +1,3 @@
-import styled from 'styled-components';
-
-const HeaderWrapper = styled.header``;
-
-const Header = () => {
-	return (
-		<HeaderWrapper className="header">
-			Header
-		</HeaderWrapper>
-	)
-};
+import Header from './Header';
 
 export default Header;

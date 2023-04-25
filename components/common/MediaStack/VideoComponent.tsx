@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
+import pxToRem from '../../../utils/pxToRem';
 
 const VideoComponentWrapper = styled.div`
 	position: relative;
@@ -28,8 +29,8 @@ const Loader = styled(motion.div)`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 16px;
-	height: 16px;
+	width: ${pxToRem(16)};
+	height: ${pxToRem(16)};
 	background: var(--colour-white);
 	border-radius: 100%;
 `;
