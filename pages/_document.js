@@ -47,7 +47,7 @@ export default class CustomDocument extends Document {
 							{
 								url: '/file-path.jpg',
 								width: 1200,
-								height: 627,
+								height: 630,
 							},
 						],
 					}}

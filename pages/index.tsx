@@ -20,15 +20,6 @@ const Page = (props: Props) => {
 		<NextSeo
 			title="Boiler"
 			description="Boiler Plate"
-			// openGraph={{
-			// 	images: [
-			// 		{
-			// 			url: siteData?.seoImage?.url,
-			// 			width: 800,
-			// 			height: 600,
-			// 		},
-			// 	],
-			// }}
 		/>
 		Home
 	</PageWrapper>
