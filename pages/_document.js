@@ -1,4 +1,3 @@
-import { NextSeo } from 'next-seo';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -40,18 +39,8 @@ export default class CustomDocument extends Document {
 					<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
 					<meta name="msapplication-TileColor" content="#da532c" />
 					<meta name="theme-color" content="#ffffff" />
+					<meta property="og:image" content="/ogg.jpg" />
 				</Head>
-				<NextSeo
-					openGraph={{
-						images: [
-							{
-								url: '/file-path.jpg',
-								width: 1200,
-								height: 630,
-							},
-						],
-					}}
-				/>
 				<body>
 					<Main />
 					<NextScript />

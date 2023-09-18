@@ -1,7 +1,4 @@
-import Head from 'next/head';
-import { renderMetaTags } from 'react-datocms';
 import styled from 'styled-components';
-import { getPage } from '../lib/datocms';
 import { NextSeo } from 'next-seo';
 
 const PageWrapper = styled.div``;
