@@ -8,16 +8,16 @@ import Layout from '../components/layout';
 import { theme } from '../styles/theme';
 import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
-import { Transitions } from '../shared/types/types';
+import { TransitionsType } from '../shared/types/types';
 import useHeaderHeight from '../hooks/useHeaderHeight';
 
-const pageTransitionVariants: Transitions = {
+const pageTransitionVariants: TransitionsType = {
 	hidden: { opacity: 0, transition: { duration: 0.3 } },
 	visible: { opacity: 1, transition: { duration: 0.3, delay: 0.25 } },
 };
 
 type Props = {
-	Component: any; // TO BE UPDATED
+	Component: any;
 	pageProps: {};
 };
 

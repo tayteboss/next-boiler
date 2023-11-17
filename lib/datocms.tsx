@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
-import ALL_PAGES_QUERY from './queries/allPages';
-import PAGE_QUERY from './queries/page';
-import SITE_QUERY from './queries/siteData';
+import ALL_PAGES_QUERY from './datoQueries/allPages';
+import PAGE_QUERY from './datoQueries/page';
+import SITE_QUERY from './datoQueries/siteData';
 
 type Request = {
 	query: string;

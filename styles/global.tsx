@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
+import pxToRem from '../utils/pxToRem';
 
 export const GlobalStyles = createGlobalStyle`
 	:root {
@@ -28,17 +29,16 @@ export const GlobalStyles = createGlobalStyle`
 		outline: none;
 		border-radius: 0;
 		box-shadow: none;
-		font-weight: 100;
 	}
 
 	::selection {
-		background-color: red;
-		color: black;
+		background-color: black;
+		color: white;
 	}
 
 	html {
 		scroll-behavior: smooth;
-		background: ${theme.colours.white};
+		background: var(--colour-white);
 		font-size: 16px;
 
 		&.no-scroll {
@@ -62,7 +62,7 @@ export const GlobalStyles = createGlobalStyle`
 	body {
 		font-family: var(--font-default);
 		color: var(--colour-black);
-		line-height: 1.4;
+		line-height: normal;
 	}
 
 	strong,
@@ -77,7 +77,6 @@ export const GlobalStyles = createGlobalStyle`
 	a {
 		text-decoration: underline;
 		color: var(--colour-black);
-		transition: all var(--transition-speed-default) var(--transition-ease);
 	}
 
 	button {
@@ -86,69 +85,65 @@ export const GlobalStyles = createGlobalStyle`
 
 	h1,
 	.type-h1 {
-		font-size: ${theme.size.h1};
-		line-height: 2.813rem;
+		font-size: ${pxToRem(48)};
+		line-height: normal;
 
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h1};
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(38)};
+			line-height: normal;
 		}
 
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h1};
-			line-height: 2.125rem;
+		@media ${theme.mediaBreakpoints.mobile} {
+			font-size: ${pxToRem(28)};
+			line-height: normal;
 		}
 	}
 
 	h2,
 	.type-h2 {
-		font-size: ${theme.size.h2};
-		line-height: 2.25rem;
+		font-size: ${pxToRem(48)};
+		line-height: normal;
 
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h2};
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(38)};
+			line-height: normal;
 		}
 
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h2};
-			line-height: 1.75rem;
+		@media ${theme.mediaBreakpoints.mobile} {
+			font-size: ${pxToRem(28)};
+			line-height: normal;
 		}
 	}
 
 	h3,
 	.type-h3 {
-		font-size: ${theme.size.h3};
-		line-height: 1.938rem;
+		font-size: ${pxToRem(48)};
+		line-height: normal;
 
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h3};
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(38)};
+			line-height: normal;
 		}
 
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h3};
-			line-height: 1.563rem;
+		@media ${theme.mediaBreakpoints.mobile} {
+			font-size: ${pxToRem(28)};
+			line-height: normal;
 		}
 	}
 
 	h4,
 	.type-h4 {
-		font-size: ${theme.size.h4};
-		line-height: 1.563rem;
+		font-size: ${pxToRem(48)};
+		line-height: normal;
 
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h4};
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(38)};
+			line-height: normal;
 		}
 
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h4};
-			line-height: 1.375rem;
+		@media ${theme.mediaBreakpoints.mobile} {
+			font-size: ${pxToRem(28)};
+			line-height: normal;
 		}
 	}
 
@@ -157,21 +152,23 @@ export const GlobalStyles = createGlobalStyle`
 	a,
 	button,
 	div {
-		font-size: ${theme.size.body};
-		line-height: 1.938rem;
+		font-size: ${pxToRem(16)};
+		line-height: normal;
+	}
 
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.body};
-			line-height: 1.75rem;
-		}
+	mux-player {
+		--media-object-fit: contain;
+		--media-object-position: center;
+		--controls: none;
+		--media-object-fit: cover;
+		--media-object-position: center;
 	}
 
 	.view-element-fade-in
 	{
 		opacity: 0;
 
-		transition: opacity 300ms ease;
+		transition: opacity var(--transition-speed-default) ease;
 
 		&--in-view
 		{
@@ -184,7 +181,7 @@ export const GlobalStyles = createGlobalStyle`
 		opacity: 0;
 		transform: translateY(15px);
 
-		transition: opacity 300ms cubic-bezier(0.65, 0, 0.35, 1), transform 300ms cubic-bezier(0.65, 0, 0.35, 1);
+		transition: opacity var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1), transform var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1);
 
 		&--in-view
 		{
@@ -198,7 +195,7 @@ export const GlobalStyles = createGlobalStyle`
 		transform: scale(0.95);
 		opacity: 0;
 
-		transition: opacity 300ms ease, transform 300ms ease;
+		transition: opacity var(--transition-speed-default) ease, transform var(--transition-speed-default) ease;
 
 		&--in-view
 		{
@@ -207,8 +204,25 @@ export const GlobalStyles = createGlobalStyle`
 		}
 	}
 
+	.embla {
+		overflow: hidden;
+	}
+
+	.embla__container {
+		display: flex;
+	}
+
+	.embla__slide {
+		flex: 0 0 100%;
+		min-width: 0;
+	}
+
 	.performance {
 		-webkit-transform: translateZ(0);
+		backface-visibility: hidden;
+		perspective: 1000;
+		transform: translate3d(0,0,0);
+		transform: translateZ(0);
 	}
 
 	::placeholder {
@@ -231,7 +245,7 @@ export const GlobalStyles = createGlobalStyle`
 	textarea,
 	select {
 		padding: 0.125rem 0;
-		font-size: ${theme.size.body};
+		font-size: ${pxToRem(16)};
 		width: 100%;
 		appearance: none;
 	}
@@ -242,7 +256,7 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	textarea {
-		min-height: 8rem;
+		min-height: 5rem;
 	}
 
 	label {

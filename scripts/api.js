@@ -1,40 +1,57 @@
 const fetch = require('node-fetch');
-require('dotenv').config({
+const fs = require('fs');
+const dotenv = require('dotenv');
+
+dotenv.config({
 	path: '.env.local',
 });
 
 const fetchAPI = async (query, { variables } = {}) => {
-	const url = `https://graphql.datocms.com/`;
-	const json = await fetch(url, {
+	const url = `https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v1/graphql/${process.env.NEXT_PUBLIC_SANITY_DATASET}/default`;
+
+	const response = await fetch(url, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			authorization: `Bearer ${process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN}`,
+			Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_API_TOKEN}`,
 		},
 		body: JSON.stringify({
 			query,
 			variables,
 		}),
-	})
-		.then((response) => response.json())
-		.then((json) => json);
-	return json?.data;
+	});
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! Status: ${response.status}`);
+	}
+
+	const json = await response.json();
+
+	return json.data;
 };
 
 const getSiteData = async () => {
-	const query = `query Query {
-		siteConfiguration {
-			seo: _seoMetaTags {
-				attributes
-				content
-				tag
+	const query = `
+		query {
+			allSiteSettings {
+				
 			}
 		}
-	}`;
+	`;
+
 	const data = await fetchAPI(query);
-	if (data.length <= 0) {
+	if (!data) {
 		return [];
 	}
+
+	const path = 'json';
+	const file = 'siteSettings.json';
+	const jsonData = JSON.stringify(data?.allSiteSettings[0]);
+
+	fs.writeFile(`${path}/${file}`, jsonData, 'utf8', () => {
+		console.log(`Wrote ${file} file.`);
+	});
+
 	return data;
 };
 
