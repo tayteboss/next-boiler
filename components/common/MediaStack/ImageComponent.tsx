@@ -9,21 +9,18 @@ const ImageComponentWrapper = styled.div`
 
 type Props = {
 	data: {
-		url: string
+		url: string;
 	};
 	isPriority: boolean;
 };
 
 const ImageComponent = (props: Props) => {
-	const {
-		data,
-		isPriority
-	} = props;
+	const { data, isPriority } = props;
 
 	return (
-	<ImageComponentWrapper className="image-component-wrapper">
-		<Image src={data.url} layout="fill" objectFit="cover" priority={isPriority} />
-	</ImageComponentWrapper>
+		<ImageComponentWrapper className="image-component-wrapper">
+			<Image src={data.url} alt="" fill priority={isPriority} />
+		</ImageComponentWrapper>
 	);
 };
 
