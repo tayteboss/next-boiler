@@ -1,131 +1,120 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { useRef, useState } from 'react';
+import MuxPlayer from '@mux/mux-player-react/lazy';
 import styled from 'styled-components';
-import pxToRem from '../../../utils/pxToRem';
+import { MediaType } from '../../../shared/types/types';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import useViewportWidth from '../../../hooks/useViewportWidth';
 
 const VideoComponentWrapper = styled.div`
 	position: relative;
+	overflow: hidden;
+
+	mux-player {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	mux-player,
+	img {
+		transition: all var(--transition-speed-extra-slow)
+			var(--transition-ease);
+	}
 `;
 
-const Video = styled.video`
-	object-fit: cover;
+const InnerBlur = styled(motion.div)`
+	position: absolute;
+	inset: 0;
 	height: 100%;
 	width: 100%;
+	z-index: 1;
 `;
 
-const LoadingWrapper = styled(motion.div)`
+const Inner = styled.div`
 	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
+	inset: 0;
 	height: 100%;
-	background: var(--colour-black);
-	z-index: 2;
-	pointer-events: none;
+	width: 100%;
+	z-index: 1;
 `;
 
-const Loader = styled(motion.div)`
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: ${pxToRem(16)};
-	height: ${pxToRem(16)};
-	background: var(--colour-white);
-	border-radius: 100%;
-`;
-
-const wrapperVariants: {} = {
+const wrapperVariants = {
 	hidden: {
-		opacity: 0,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut',
-		},
-	},
-	visible: {
 		opacity: 1,
+		filter: 'blur(10px)',
+		scale: 1.05,
 		transition: {
-			duration: 0.3,
-			ease: 'easeInOut',
-		},
-	},
-};
-
-const childVariants: {} = {
-	hidden: {
-		opacity: 0,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut',
-		},
+			duration: 2,
+			ease: 'easeInOut'
+		}
 	},
 	visible: {
-		opacity: [1, 0],
+		opacity: 0,
+		filter: 'blur(0px)',
+		scale: 1,
 		transition: {
-			duration: 0.6,
+			duration: 2,
 			ease: 'easeInOut',
-			repeat: 'Infinity',
-			repeatType: 'mirror',
-		},
-	},
+			delay: 0.2
+		}
+	}
 };
 
 type Props = {
-	data: {
-		url: string
-	};
+	data: MediaType;
 	inView: boolean;
+	isPriority: boolean;
 };
 
 const VideoComponent = (props: Props) => {
-	const {
-		data,
-		inView
-	} = props;
+	const { data, inView, isPriority } = props;
 
-	const [isLoading, setIsLoading] = useState(true);
+	const viewport = useViewportWidth();
+	const isMobile = viewport === 'mobile';
 
-	let videoUrl: boolean | string = false;
-	if (data) {
-		videoUrl = data?.url;
-	}
-
-	const videoRef = useRef<HTMLVideoElement>(null);
+	const playbackId =
+		isMobile && data?.mobileVideo?.asset?.playbackId
+			? data.mobileVideo.asset.playbackId
+			: data?.video?.asset?.playbackId;
+	const posterUrl =
+		isMobile && data?.mobileVideo?.asset?.playbackId
+			? `https://image.mux.com/${data.mobileVideo.asset.playbackId}/thumbnail.png?width=214&height=121&time=1`
+			: `https://image.mux.com/${data?.video?.asset?.playbackId}/thumbnail.png?width=214&height=121&time=1`;
 
 	return (
 		<VideoComponentWrapper className="video-component-wrapper">
-			{videoUrl && (
-				<>
-					<AnimatePresence>
-						{isLoading && (
-							<LoadingWrapper
-								variants={wrapperVariants}
-								initial="hidden"
-								animate="visible"
-								exit="hidden"
-							>
-								<Loader
-									variants={childVariants}
-									initial="hidden"
-									animate="visible"
-									exit="hidden"
-								/>
-							</LoadingWrapper>
-						)}
-					</AnimatePresence>
-					<Video
-						autoPlay
-						muted
-						playsInline
-						loop
-						ref={videoRef}
-						preload="auto"
-						onLoadedData={() => setIsLoading(false)}
+			<AnimatePresence initial={false}>
+				{inView && playbackId && (
+					<InnerBlur
+						variants={wrapperVariants}
+						initial="hidden"
+						animate="visible"
+						exit="hidden"
 					>
-						<source src={videoUrl} type="video/mp4" />
-					</Video>
-				</>
+						<Image
+							src={`${posterUrl}`}
+							alt={''}
+							fill
+							priority={isPriority}
+						/>
+					</InnerBlur>
+				)}
+			</AnimatePresence>
+			{playbackId && (
+				<Inner>
+					<MuxPlayer
+						streamType="on-demand"
+						playbackId={playbackId}
+						autoPlay="muted"
+						loop={true}
+						thumbnailTime={1}
+						loading="page"
+						preload="auto"
+						muted
+						playsInline={true}
+						poster={`${posterUrl}`}
+					/>
+				</Inner>
 			)}
 		</VideoComponentWrapper>
 	);

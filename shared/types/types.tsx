@@ -1,17 +1,10 @@
 export type MediaType = {
-	media: [
-		{
-			webmVideoFile: {
-				url: string;
-			};
-			mp4VideoFile: {
-				url: string;
-			};
-			placeholderImage: {
-				url: string;
-			}
-		}
-	];
+	mediaType: 'video' | 'image';
+	video: { asset: { playbackId: string } };
+	image: { asset: { url: string; metadata: { lqip: string } }; alt: string };
+	mobileImage?: { asset: { url: string; metadata: { lqip: string } } };
+	mobileVideo?: { asset: { playbackId: string } };
+	caption?: string;
 };
 
 export type TransitionsType = {
@@ -19,13 +12,30 @@ export type TransitionsType = {
 		opacity: number;
 		transition: {
 			duration: number;
-		}
-	}
+		};
+	};
 	visible: {
 		opacity: number;
 		transition: {
 			duration: number;
-			delay?: number
-		}
-	}
+			delay?: number;
+		};
+	};
+};
+
+export type ButtonType = {
+	url: string;
+	pageReference: {
+		_ref: string;
+	};
+	title: string;
+};
+
+export type SlugType = {
+	current: string;
+};
+
+export type HomePageType = {
+	seoDescription: string;
+	seoTitle: string;
 };

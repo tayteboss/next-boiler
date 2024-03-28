@@ -37,7 +37,6 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	html {
-		scroll-behavior: smooth;
 		background: var(--colour-white);
 		font-size: 16px;
 
@@ -277,5 +276,26 @@ export const GlobalStyles = createGlobalStyle`
 	iframe {
 		max-width: 100%;
 		display: block;
+	}
+
+
+	html.lenis {
+		height: auto;
+	}
+
+	.lenis.lenis-smooth {
+		scroll-behavior: auto !important;
+	}
+
+	.lenis.lenis-smooth [data-lenis-prevent] {
+		overscroll-behavior: contain;
+	}
+
+	.lenis.lenis-stopped {
+		overflow: hidden;
+	}
+
+	.lenis.lenis-scrolling iframe {
+		pointer-events: none;
 	}
 `;
