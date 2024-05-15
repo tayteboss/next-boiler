@@ -9,10 +9,7 @@ type Props = {
 };
 
 const RichText = (props: Props) => {
-	const {
-		data,
-		className = '',
-	} = props;
+	const { data, className = '' } = props;
 
 	return (
 		<>

@@ -9,3 +9,17 @@ export const homePageQueryString = `
 		...,
 	}
 `;
+
+export const workPageQueryString = `
+	*[_type == "workPage"] {
+		...,
+		seoTitle,
+		seoDescription,
+	}
+`;
+
+export const projectsQueryString = `
+	*[_type == 'project'] | order(orderRank) [0...100] {
+		...,
+	}
+`;

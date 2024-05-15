@@ -36,6 +36,15 @@ export type SlugType = {
 };
 
 export type HomePageType = {
-	seoDescription: string;
 	seoTitle: string;
+	seoDescription: string;
+};
+
+export type WorkPageType = {
+	seoTitle: string;
+	seoDescription: string;
+};
+
+export type ProjectType = {
+	slug: SlugType;
 };
