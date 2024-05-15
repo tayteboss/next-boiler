@@ -29,6 +29,8 @@ export const GlobalStyles = createGlobalStyle`
 		box-shadow: none;
 	}
 
+	-webkit-text-size-adjust: 100%;
+
 	::selection {
 		background-color: black;
 		color: white;

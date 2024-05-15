@@ -109,7 +109,6 @@ const ImageComponent = (props: Props) => {
 						<Image
 							src={blurDataURL}
 							alt={data?.image?.alt || ''}
-							fill
 							priority={isPriority}
 							blurDataURL={blurDataURL}
 						/>
@@ -125,7 +124,6 @@ const ImageComponent = (props: Props) => {
 					<Image
 						src={imageUrl}
 						alt={data?.image?.alt || ''}
-						fill
 						priority={isPriority}
 						blurDataURL={blurDataURL}
 					/>

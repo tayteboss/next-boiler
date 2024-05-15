@@ -17,10 +17,13 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'cdn.sanity.io',
+				hostname: 'image.mux.com',
 				pathname: '**',
 			},
 		],
+	},
+	compiler: {
+		styledComponents: true,
 	},
 };
 
