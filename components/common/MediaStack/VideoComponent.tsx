@@ -82,7 +82,7 @@ const VideoComponent = (props: Props) => {
 			: `https://image.mux.com/${data?.video?.asset?.playbackId}/thumbnail.png?width=214&height=121&time=1`;
 
 	return (
-		<VideoComponentWrapper className="video-component-wrapper">
+		<VideoComponentWrapper className="media-wrapper">
 			<AnimatePresence initial={false}>
 				{inView && playbackId && (
 					<InnerBlur

@@ -97,7 +97,7 @@ const ImageComponent = (props: Props) => {
 			: data?.image?.asset?.metadata?.lqip;
 
 	return (
-		<ImageComponentWrapper className="image-component-wrapper">
+		<ImageComponentWrapper className="media-wrapper">
 			<AnimatePresence initial={false}>
 				{inView && data?.image?.asset?.metadata?.lqip && (
 					<InnerBlur
@@ -111,6 +111,11 @@ const ImageComponent = (props: Props) => {
 							alt={data?.image?.alt || ''}
 							priority={isPriority}
 							blurDataURL={blurDataURL}
+							fill
+							style={{
+								objectFit: 'cover'
+							}}
+							sizes="50vw"
 						/>
 					</InnerBlur>
 				)}
@@ -126,6 +131,10 @@ const ImageComponent = (props: Props) => {
 						alt={data?.image?.alt || ''}
 						priority={isPriority}
 						blurDataURL={blurDataURL}
+						fill
+						style={{
+							objectFit: 'cover'
+						}}
 					/>
 				)}
 			</Inner>
